@@ -47,7 +47,7 @@ app.get('/',(req,res)=>{
  
 
 
-app.get('zaids', async (req,res)=>{
+app.get('/zaids', async (req,res)=>{
     const allZaids = await Zaid.find()
     res.render('all-zaids.ejs',{zaids: allZaids})
 })
@@ -61,7 +61,7 @@ app.post('/zaids', async (req,res)=>{
     try{
     req.body.isPublic = Boolean(req.body.isPublic)
     const createdZaid = await Zaid.create(req.body)
-    res.redirect('all-zaids.ejs')
+    res.redirect('/zaids')
 
     }
     catch(err){
@@ -78,7 +78,7 @@ app.get('/zaids/:zaidId', async (req,res)=>{
 
 
 
-app.delete('/zaids/:zaidId',async(req,res)=>{
+app.delete('/zaids/:zaidId/',async(req,res)=>{
     await Zaid.findByIdAndDelete(req.params.zaidId)
     res.redirect('/zaids')
 })
