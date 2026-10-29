@@ -44,10 +44,10 @@ app.use(morgan('dev'))
 app.get('/',(req,res)=>{
     res.render('homepage.ejs')
 })
+ 
 
 
-
-app.get('/zaids', async (req,res)=>{
+app.get('zaids', async (req,res)=>{
     const allZaids = await Zaid.find()
     res.render('all-zaids.ejs',{zaids: allZaids})
 })
@@ -86,6 +86,6 @@ app.delete('/zaids/:id',async(req,res)=>{
 
 
 
-app.listen(3000,()=>{
+app.listen(3004,()=>{
     console.log('App is Running')
 }) // listen on port 3000
