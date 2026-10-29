@@ -42,7 +42,7 @@ app.use(morgan('dev'))
 // Routes go here
 
 app.get('/',(req,res)=>{
-    res.render('/homepage.ejs')
+    res.render('homepage.ejs')
 })
  
 
@@ -52,7 +52,7 @@ app.get('zaids', async (req,res)=>{
     res.render('all-zaids.ejs',{zaids: allZaids})
 })
 
-app.get('/zaids/new', (res, req)=>{
+app.get('/zaids/new', (req, res)=>{
     res.render('create-zaid.ejs')
 })
 
