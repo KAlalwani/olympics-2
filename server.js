@@ -3,7 +3,7 @@ const express = require("express") //importing express package
 const app = express() // creates a express application
 const dotenv = require("dotenv").config() //this allows me to use my .env values in this file
 const mongoose = require("mongoose")
-const Zaid = require('./models/Ziad')
+const Zaid = require('./models/Zaid')
 const methodOverride = require('method-override')
 const morgan = require('morgan')
 
@@ -42,7 +42,7 @@ app.use(morgan('dev'))
 // Routes go here
 
 app.get('/',(req,res)=>{
-    res.render('homepage.ejs')
+    res.render('/homepage.ejs')
 })
  
 
@@ -72,14 +72,14 @@ app.post('/zaids', async (req,res)=>{
 
 
 app.get('/zaids/:zaidId', async (req,res)=>{
-    const foundZaid = await Zaid.findById(req.params)
+    const foundZaid = await Zaid.findById(req.params.zaidId)
     res.render('zaid-details.ejs',{zaid: foundZaid})
 })
 
 
 
 app.delete('/zaids/:zaidId',async(req,res)=>{
-    await Zaid.findByIdAndDelete(req.params.id)
+    await Zaid.findByIdAndDelete(req.params.zaidId)
     res.redirect('/zaids')
 })
 
